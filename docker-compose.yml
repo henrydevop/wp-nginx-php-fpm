@@ -23,4 +23,4 @@ services:
       - /home/ubuntu/data/php-fpm:/usr/local/etc/php-fpm.d
       - /home/ubuntu/data/site:/var/www/henrydev.pp.ua
     ports:
-      - "127.0.0.1:9000:9000"
+      - "9000:9000"
