@@ -7,7 +7,13 @@ services:
       - /home/ubuntu/data/mysql:/var/lib/mysql
     ports:
       - "3306:3306"
-  
+    restart: always
+    environment:
+     - MYSQL_ROOT_PASSWORD=rootpassword123
+     - MYSQL_DATABASE=wordpress
+     - MYSQL_USER=wordpress
+     - MYSQL_PASSWORD=wordpress
+
   nginx:
     image: nginx:latest
     volumes:
@@ -22,7 +28,8 @@ services:
   php-fpm:
     image: php:7.4-fpm
     volumes:
-#      - /home/ubuntu/data/php-fpm:/usr/local/etc/php-fpm.d
       - /home/ubuntu/data/site:/var/www/henrydev.pp.ua
     ports:
       - "9000:9000"
+    links:
+      - db
