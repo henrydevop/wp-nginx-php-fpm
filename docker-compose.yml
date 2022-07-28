@@ -16,11 +16,13 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    links:
+      - php-fpm
 
   php-fpm:
     image: php:7.4-fpm
     volumes:
-      - /home/ubuntu/data/php-fpm:/usr/local/etc/php-fpm.d
+#      - /home/ubuntu/data/php-fpm:/usr/local/etc/php-fpm.d
       - /home/ubuntu/data/site:/var/www/henrydev.pp.ua
     ports:
       - "9000:9000"
