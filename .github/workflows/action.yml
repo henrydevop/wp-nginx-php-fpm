@@ -30,9 +30,9 @@ jobs:
           sudo rm -rf wordpress latest.zip
           sudo chown -R www-data: ${{ env.SITE_HOME_DIR }}
 
-      - uses: ndeloof/install-docker-compose@v1
-        with:
-          legacy: true    # will also install in PATH as `docker-compose`
+      - name: Install Docker and Docker-compose
+        run: |
+          sudo apt install -y docker docker-compose
           
   docker-compose:
     runs-on: self-hosted
