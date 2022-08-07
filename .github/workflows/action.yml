@@ -1,4 +1,4 @@
-name: CI
+name: wordpress-install
 
 on:
   push:
@@ -11,5 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run a one-line script
-        run: ls -la
+      - name: Make home dir and copy data
+        run: |
+          mkdir /home/wp-nginx-php-fpm
+          cp * /home/wp-nginx-php-fpm/
+          ls -la /home/wp-nginx-php-fpm
