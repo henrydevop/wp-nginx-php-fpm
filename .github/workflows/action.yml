@@ -33,7 +33,7 @@ jobs:
       - name: Install Docker and Docker-compose
         run: |
           sudo apt update -y
-          sudo apt apgrade -y
+          sudo apt upgrade -y
           sudo mkdir -p /home/.docker/cli-plugins
           sudo curl -SL https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-linux-x86_64 -o /home/.docker/cli-plugins/docker-compose
           sudo chmod +x /home/.docker/cli-plugins/docker-compose
