@@ -26,9 +26,13 @@ services:
       - php-fpm
 
   php-fpm:
-    image: php:7.4-fpm
-    volumes:
-#      - /home/wp-nginx-php-fpm/data/php-fpm:/usr/local/etc/php-fpm.d
-      - /home/wp-nginx-php-fpm/data/site:/var/www/henrydev.pp.ua
+    build:
+      context: .
+      dockerfile: Dockerfile-php-fpm
     ports:
       - "9000:9000"
+    volumes:
+      - /home/wp-nginx-php-fpm/data/site:/var/www/henrydev.pp.ua
+
+  
+
