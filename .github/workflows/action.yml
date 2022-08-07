@@ -48,5 +48,5 @@ jobs:
     steps:
       - name: Run docker compose
         run: |
-          cd ${{ env.PROJECT_HOME_DIR }}
+          cd ${{ env.PROJECT_HOME_DIR }} 
           sudo docker-compose up -d 
