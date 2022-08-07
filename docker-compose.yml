@@ -1,18 +1,24 @@
-version: '2'
+version: '3'
 
 services:
   db:
     image: mysql:5.7
+    restart: always
     volumes:
-      - /home/ubuntu/data/mysql:/var/lib/mysql
+      - /home/wp-nginx-php-fpm/data/mysql:/var/lib/mysql
     ports:
       - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
   
   nginx:
     image: nginx:latest
     volumes:
-      - /home/ubuntu/data/nginx/conf.d:/etc/nginx/conf.d
-      - /home/ubuntu/data/site:/var/www/henrydev.pp.ua
+      - /home/wp-nginx-php-fpm/data/nginx/conf.d:/etc/nginx/conf.d
+      - /home/wp-nginx-php-fpm/data/site:/var/www/henrydev.pp.ua
     ports:
       - "80:80"
       - "443:443"
@@ -22,7 +28,7 @@ services:
   php-fpm:
     image: php:7.4-fpm
     volumes:
-#      - /home/ubuntu/data/php-fpm:/usr/local/etc/php-fpm.d
-      - /home/ubuntu/data/site:/var/www/henrydev.pp.ua
+#      - /home/wp-nginx-php-fpm/data/php-fpm:/usr/local/etc/php-fpm.d
+      - /home/wp-nginx-php-fpm/data/site:/var/www/henrydev.pp.ua
     ports:
       - "9000:9000"
