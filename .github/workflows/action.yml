@@ -6,7 +6,7 @@ on:
 
 env:
   PROJECT_HOME_DIR: /home/wp-nginx-php-fpm
-  SITE_HOME_DIR: /home/wp-nginx-php-fpm/henrydev.pp.ua
+  SITE_HOME_DIR: /home/wp-nginx-php-fpm/data/site
 
 jobs:
   build:
@@ -24,10 +24,10 @@ jobs:
       - name: Make site home dir and download Wordpress
         run: |
           sudo mkdir ${{ env.SITE_HOME_DIR }}
-          sudo cd ${{ env.SITE_HOME_DIR }}
+          cd ${{ env.SITE_HOME_DIR }}
           sudo curl -O https://wordpress.org/latest.zip
           sudo unzip latest.zip
           sudo mv wordpress/* .
           sudo rm -rf wordpress latest.zip
           sudo chown -R www-data: ${{ env.SITE_HOME_DIR }}
-          sudo ls -la ${{ env.SITE_HOME_DIR }}/
+          ls -la ${{ env.SITE_HOME_DIR }}/
