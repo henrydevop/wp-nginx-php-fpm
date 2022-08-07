@@ -35,7 +35,7 @@ jobs:
           sudo apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
           sudo mkdir -p /etc/apt/keyrings
           sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg > docker.txt
-          sudo gpg --dearmor < docker.txt > /usr/share/keyrings/docker.gpg
+          sudo gpg --dearmor < docker.txt > docker.gpg
           sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
           sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
           sudo apt update
