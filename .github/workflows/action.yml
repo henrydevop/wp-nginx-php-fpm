@@ -4,6 +4,10 @@ on:
   push:
     branches: [ "master" ]
 
+env:
+  PROJECT_HOME_DIR: /home/wp-nginx-php-fpm
+  SITE_HOME_DIR: /home/wp-nginx-php-fpm/henrydev.pp.ua
+
 jobs:
   build:
     runs-on: self-hosted
@@ -11,8 +15,19 @@ jobs:
     steps: 
       - uses: actions/checkout@v3
 
-      - name: Make home dir and copy data
+      - name: Make project home dir and copy data
         run: |
-          sudo mkdir /home/wp-nginx-php-fpm
-          sudo cp -R * /home/wp-nginx-php-fpm/
-          sudo ls -la /home/wp-nginx-php-fpm
+          sudo mkdir ${{ env.PROJECT_HOME_DIR }}
+          sudo cp -R * ${{ env.PROJECT_HOME_DIR }}
+          sudo ls -la ${{ env.PROJECT_HOME_DIR }}
+          
+      - name: Make site home dir and download Wordpress
+        run: |
+          sudo mkdir ${{ env.SITE_HOME_DIR }}
+          sudo cd ${{ env.SITE_HOME_DIR }}
+          sudo curl -O https://wordpress.org/latest.zip
+          sudo unzip latest.zip
+          sudo mv wordpress/* .
+          sudo rm -rf wordpress latest.zip
+          sudo chown -R www-data: ${{ env.SITE_HOME_DIR }}
+          sudo ls -la ${{ env.SITE_HOME_DIR }}/
