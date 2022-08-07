@@ -9,9 +9,8 @@ env:
   SITE_HOME_DIR: /home/wp-nginx-php-fpm/data/site
 
 jobs:
-  build:
+  setup:
     runs-on: self-hosted
-
     steps: 
       - uses: actions/checkout@v3
 
@@ -30,4 +29,16 @@ jobs:
           sudo mv wordpress/* .
           sudo rm -rf wordpress latest.zip
           sudo chown -R www-data: ${{ env.SITE_HOME_DIR }}
-          ls -la ${{ env.SITE_HOME_DIR }}/
+          
+      - uses: KengoTODA/actions-setup-docker-compose@main
+        with:
+          version: '3'
+          
+  docker-compose:
+    runs-on: self-hosted
+    needs: setup
+    steps:
+      - name: Run docker compose
+        run: |
+          cd ${{ env.PROJECT_HOME_DIR }}
+          sudo docker-compose up -d
