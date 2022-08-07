@@ -14,5 +14,5 @@ jobs:
       - name: Make home dir and copy data
         run: |
           sudo mkdir /home/wp-nginx-php-fpm
-          sudo cp * /home/wp-nginx-php-fpm/
+          sudo cp -R * /home/wp-nginx-php-fpm/
           sudo ls -la /home/wp-nginx-php-fpm
