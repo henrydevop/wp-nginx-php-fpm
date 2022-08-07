@@ -29,10 +29,10 @@ jobs:
           sudo mv wordpress/* .
           sudo rm -rf wordpress latest.zip
           sudo chown -R www-data: ${{ env.SITE_HOME_DIR }}
-          
-      - uses: KengoTODA/actions-setup-docker-compose@main
+
+      - uses: ndeloof/install-docker-compose@v1
         with:
-          version: '3'
+          legacy: true    # will also install in PATH as `docker-compose`
           
   docker-compose:
     runs-on: self-hosted
