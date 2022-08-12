@@ -2,7 +2,7 @@ name: wordpress-install
 
 on:
   push:
-    branches: [ "ssladd" ]
+    branches: [ "master" ]
 
 env:
   PROJECT_HOME_DIR: /home/wp-nginx-php-fpm
