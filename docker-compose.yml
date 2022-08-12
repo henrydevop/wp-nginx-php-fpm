@@ -19,6 +19,7 @@ services:
     volumes:
       - /home/wp-nginx-php-fpm/data/nginx/conf.d:/etc/nginx/conf.d
       - /home/wp-nginx-php-fpm/data/site:/var/www/henrydev.pp.ua
+      - /home/wp-nginx-php-fpm/data/certbot:/etc/letsencrypt
     ports:
       - "80:80"
       - "443:443"
