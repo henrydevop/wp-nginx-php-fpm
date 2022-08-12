@@ -41,5 +41,5 @@ services:
     volumes: 
       - /home/wp-nginx-php-fpm/data/certbot:/etc/letsencrypt
       - /home/wp-nginx-php-fpm/data/certbot/www:/var/www/certbot
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email test@test.test -d henrydev.pp.ua --agree-tos  
+    command: certonly --webroot -w /var/www/certbot --email test@test.test -d henrydev.pp.ua -d www.henrydev.pp.ua --agree-tos  
 
