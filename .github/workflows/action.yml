@@ -7,6 +7,7 @@ on:
 env:
   PROJECT_HOME_DIR: /home/wp-nginx-php-fpm
   SITE_HOME_DIR: /home/wp-nginx-php-fpm/data/site
+  DOMAIN: henrydev.pp.ua
 
 jobs:
   setup:
@@ -47,4 +48,15 @@ jobs:
         run: |
           cd ${{ env.PROJECT_HOME_DIR }} 
           sudo docker-compose up -d 
+
+  ssl-enable:
+    runs-on: self-hosted
+    needs: docker-compose
+    steps:
+      - name: Move nginx domain.conf and container restart
+        run: |
+          cd ${{ env.PROJECT_HOME_DIR }}/data/nginx/conf.d
+          sudo rm -f ${{ env.DOMAIN }}.conf
+          sudo mv ${{ env.DOMAIN }}.conf_ssl ${{ env.DOMAIN }}.conf
+          sudo docker restart wp-nginx-php-fpm_nginx_1
 
